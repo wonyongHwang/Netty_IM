@@ -110,5 +110,3 @@ module.exports = {
 - 실행 : 
 java -jar -Dfront_dir=/root/netty/Netty_IM/front/im_ui/dist -Dport=8088 netty_im-1.0.jar
 
-- 배포 결과 : 
-http://smart.wonyong.net:8088/
