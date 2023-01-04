@@ -1,6 +1,5 @@
 使用vue ,netty 基于websocket的 即时通讯系统。  
 github: https://github.com/wangkeshan9538/Netty_IM  
-site: http://47.105.88.240:8080/  
 
 # 使用示例
 
@@ -75,3 +74,37 @@ port
 1. netty 用起来还是有点太底层了，静态服务器的代码都要自己找，所以可以考虑换成vertx,比较小清新，还能做集群
 2. 想做一个压测工具，来压测下性能，
 3. ssl的支持，
+
+
+## 빌드순서
+1. Front-End Test and Build
+/Netty_IM/front/im_ui 에서
+- 설치 : npm install
+- 테스트 : npm run serve -- --port 8080
+- 프로덕션 빌드 : npm run build
+
+- 참고사항 : 서버 배포 후 브라우저 접속시, vue Invalid Host header 오류 발생할 경우
+/Netty_IM/front/im_ui/vue.config.js 에 다음을 추가한다.
+
+module.exports = {
+  // options...
+  devServer: {
+    disableHostCheck: true
+  }
+};
+
+2. Back-End Build
+/Netty_IM 에서
+- 빌드 : mvn install 
+
+(jdk version : openjdk 1.8)
+(jdk11 빌드시 오류 발생시 pom.xml에 다음의 dependency 추가)
+<dependency>
+    <groupId>javax.activation</groupId>
+    <artifactId>activation</artifactId>
+    <version>1.1.1</version>
+</dependency>
+참고 : https://vo.la/U5jiRz
+
+- 실행 : 
+java -jar -Dfront_dir=/root/netty/Netty_IM/front/im_ui/dist -Dport=8088 netty_im-1.0.jar
