@@ -99,12 +99,13 @@ module.exports = {
 
 (jdk version : openjdk 1.8)
 (jdk11 빌드시 오류 발생시 pom.xml에 다음의 dependency 추가)
+```
 <dependency>
     <groupId>javax.activation</groupId>
     <artifactId>activation</artifactId>
     <version>1.1.1</version>
 </dependency>
-참고 : https://vo.la/U5jiRz
-
+```
+[참고링크](https://vo.la/U5jiRz "StackOverflow")
 - 실행 : 
 java -jar -Dfront_dir=/root/netty/Netty_IM/front/im_ui/dist -Dport=8088 netty_im-1.0.jar
