@@ -46,9 +46,6 @@ public class Router {
         Class reqType = Class.forName(((ParameterizedType) clezz.getGenericSuperclass()).getActualTypeArguments()[0].getTypeName());
         Class resptype = Class.forName(((ParameterizedType) clezz.getGenericSuperclass()).getActualTypeArguments()[1].getTypeName());
 
-
-        //填充req
-        // TODO 这块对于入参出参的处理 明显不够好，入参出参带个泛型，就没办法处理了，我觉得用泛型来标志入参出参并不是一个好的方式，应该需要看下springmvc对入参出参怎么处理的
         Object req = null;
         if (!reqType.equals(Void.class)) {
             req = serializer.desData(p, reqType);
@@ -58,12 +55,11 @@ public class Router {
         try {
             result = clezz.getDeclaredMethod("process", MsgContext.class, Object.class).invoke(clezz.newInstance(), context, req);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException e) {
-            log.error("方法invoeke 失败" + p, e);
-            return new Packet(ERROR, p.getTraceId(), new ErrorResp("未知错误"));
+            log.error("메서드 호출 실패" + p, e);
+            return new Packet(ERROR, p.getTraceId(), new ErrorResp("Unknown Error"));
         }
 
-
-        //处理result
+        // 호출 결과 클라이언트 전송  
         if (!resptype.equals(Void.class)) {
             return new Packet(p.getCommand(), p.getTraceId(), result);
         }

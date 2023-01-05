@@ -64,7 +64,7 @@ public final class WebSocketServer {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
-        //为反馈Channel的eventLoop设置
+        // 피드백 채널의 eventLoop에 대해 설정
         GodChannel.eventExecutors=workerGroup.next();
 
         try {

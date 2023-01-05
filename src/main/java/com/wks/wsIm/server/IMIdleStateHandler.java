@@ -25,9 +25,9 @@ public class IMIdleStateHandler extends IdleStateHandler {
         Channel c=ctx.channel();
         Session s=c.attr(SESSION).get();
         if(s!=null &&s.getUser()!=null){
-            log.info("关闭空闲连接"+ s.getUser().getUserName());
+            log.info("유휴 연결 닫기"+ s.getUser().getUserName());
         }else{
-            log.info("关闭空闲连接");
+            log.info("유휴 연결 닫기");
         }
         ctx.channel().close();
     }

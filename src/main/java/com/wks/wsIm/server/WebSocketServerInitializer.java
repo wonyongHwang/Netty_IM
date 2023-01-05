@@ -45,11 +45,11 @@ public class WebSocketServerInitializer extends ChannelInitializer<SocketChannel
         }
         pipeline.addLast(new IMIdleStateHandler());
         pipeline.addLast(new HttpServerCodec());
-        pipeline.addLast(new HttpObjectAggregator(65536)); //聚合 htp requet中的chunk内容，
-        pipeline.addLast(new ChunkedWriteHandler());//聚合response中的大量数据内容
-        pipeline.addLast(new WebSocketServerCompressionHandler());//在这里处理websocket的扩展，协议升级
-        pipeline.addLast(new WebSocketServerProtocolHandler(WEBSOCKET_PATH, null, true));//当 会自动add一个握手协议
-        pipeline.addLast(new HttpStaticFileServerHandler());//静态页面服务
+        pipeline.addLast(new HttpObjectAggregator(65536)); //http 요청에서 청크 콘텐츠 집계,
+        pipeline.addLast(new ChunkedWriteHandler());//응답에서 많은 양의 데이터 콘텐츠 집계
+        pipeline.addLast(new WebSocketServerCompressionHandler());//여기에서 websocket 확장 및 프로토콜 업그레이드 처리
+        pipeline.addLast(new WebSocketServerProtocolHandler(WEBSOCKET_PATH, null, true));//핸드셰이크 프로토콜을 자동으로 추가하는 경우
+        pipeline.addLast(new HttpStaticFileServerHandler());//정적 페이지 제공
         pipeline.addLast(new WebSocketFrameHandler());
     }
 }
