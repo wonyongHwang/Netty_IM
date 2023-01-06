@@ -23,7 +23,7 @@ if (window.WebSocket) {
             if(index>=0){
                 msghandle=wsMsgQueue.splice(index, 1)[0]
                 msghandle.resp=packet;
-                msghandle.handle(msghandle);
+                msghandle.handle(msghandle); // 콜백함수를 호출해준다.
             }
 
         }
@@ -50,7 +50,8 @@ function send(msg) {
         }else if(msg instanceof MsgHandle){
             socket.send(JSON.stringify( msg.req));
             //进队列
-            wsMsgQueue.push(msg)
+            wsMsgQueue.push(msg) // 전역변수에 저장해놨다가, 서버에서 응답을 받으면 저장해놨던 traceId로 조회해서 해당
+                                 // traceId에 맵핑되는 콜백함수를 호출할때 쓴다.
         }
         
     } else {
@@ -79,7 +80,7 @@ class MsgHandle{
     constructor(req,handle){
         this.req=req, //packet
         this.resp={}, //packet
-        this.handle=handle
+        this.handle=handle // callback function
     }
 }
 
@@ -96,7 +97,9 @@ const commands =new Map([
 ])
 
 //存储命令对应的处理器
- var cmdHandle=new Map([
+ var cmdHandle=new Map([ // 친구 추가 이벤트, 메시지 수신 등 리스닝해야 되는 이벤트의 핸들러를 등록해 두는 용도
+                        // 웹소켓에서 데이터 수신시 traceId가 없는 이벤트에 해당되고,
+                        // 이러한 이벤트는 cmdHandle에 등록해둔 커맨드에 매핑(Map)되는 핸들러 함수를 호출하게 된다.
      
 ])
 
