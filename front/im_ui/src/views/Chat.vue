@@ -2,7 +2,7 @@
   <div class="container">
     <van-nav-bar left-arrow :title="sendToName" fixed @click-left="back" />
     <div class="contents">
-      <van-list finished-text="没有更多了">
+      <van-list finished-text="...">
         <template v-for="{time,direct,status,msg} in msg[sendToId]">
           <Message
             v-bind:Messagetype="direct=='send'?'chat-mine':'chat-other'"
@@ -17,7 +17,7 @@
 
     <van-cell-group class="inputFiels">
       <van-field v-model="inputMsg" rows="1" autosize border clearable type="textarea">
-        <van-button slot="button" size="small" type="primary" @click="send">发送</van-button>
+        <van-button slot="button" size="small" type="primary" @click="send">발송</van-button>
       </van-field>
     </van-cell-group>
   </div>

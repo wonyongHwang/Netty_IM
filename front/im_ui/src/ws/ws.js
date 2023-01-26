@@ -32,10 +32,10 @@ if (window.WebSocket) {
 
     };
     socket.onopen = function (event) {
-        console.info("websocket打开连接")
+        console.info("websocket접속")
     };
     socket.onclose = function (event) {
-        console.info("websocket关闭连接")
+        console.info("websocket종료")
     };
 } else {
     alert("Your browser does not support Web Socket.");

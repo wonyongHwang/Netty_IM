@@ -22,7 +22,7 @@ function addfunc(obj) {
     var data = obj.resp.data;
     Notify({
         type: 'success',
-        message: '添加成功:'+data.userName,
+        message: '친구추가성공:'+data.userName,
         duration: 1000
     });
     friendsList.list.push({ 'userId': data.userId, 'userName': data.userName, status: 1 ,infoCount:1})
@@ -34,7 +34,7 @@ function addedFunc(obj) {
     var data = obj.data;
     Notify({
         type: 'success',
-        message: '有新的好友添加:'+data.userName,
+        message: '새로운 친구추가'+data.userName,
         duration: 1000
     });
     friendsList.list.push({ 'userId': data.userId, 'userName': data.userName, status: 1 ,infoCount:1})

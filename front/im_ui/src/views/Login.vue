@@ -29,11 +29,11 @@
         />
       </g>
     </svg>
-    <div id="welcome">wks藏在这里了</div>
+    <div id="welcome">한국폴리텍대학 스마트금융과 소켓실습</div>
     <van-row type="flex" justify="center">
       <van-col span="12">
         <van-cell-group>
-          <van-field left-icon="contact" v-model="userName" placeholder="用户名" />
+          <van-field left-icon="contact" v-model="userName" placeholder="대화명" />
         </van-cell-group>
       </van-col>
     </van-row>
@@ -41,14 +41,14 @@
     <van-row type="flex" justify="center">
       <van-col span="12">
         <van-cell-group>
-          <van-field left-icon="contact" v-model="passwd" type="password" placeholder="暂不设置密码" />
+          <van-field left-icon="contact" v-model="passwd" type="password" placeholder="비밀번호" />
         </van-cell-group>
       </van-col>
     </van-row>
 
     <van-row type="flex" justify="center">
       <van-col span="8">
-        <van-button type="default" to="main" size="small" @click="click">登录</van-button> <!---->
+        <van-button type="default" to="main" size="small" @click="click">등록</van-button> <!---->
       </van-col>
     </van-row>
   </div>

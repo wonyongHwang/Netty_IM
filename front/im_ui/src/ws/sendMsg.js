@@ -67,54 +67,47 @@ function receiveMsg(obj) {
         new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
       ]
 
-    //添加到msgBox
+    //msgBox에 추가
     if (undefined == msgBox[snedFromID] || null == msgBox[snedFromID]) {
-        msgBox[snedFromID] = [m] //如果chat还没渲染，那么在这添加，等再进入时，是可以监控到的
+        msgBox[snedFromID] = [m] // 채팅이 아직 렌더링되지 않은 경우 여기에 추가하고 다시 입장할 때 모니터링할 수 있습니다.
     } else {
         msgBox[snedFromID].push(m)
-
-        // [omokStart]
-
-
-        // [omok]
-        if(data.msg.includes('[omok]') == true){
-            var tmpPos = (data.msg.split('[omok]')[1]).split(':')
-
-            var tmpJson = {'board' : board, 'myTurn' : 'True'}
-
-            var tmplocalStorage = localStorage.getItem(snedFromID)
-            if(tmplocalStorage != null){
-                // console.log(JSON.parse(tmplocalStorage))
-                var tmpBoard = JSON.parse(tmplocalStorage)
-                tmpJson['board'] = tmpBoard['board']
-            }
-            
-            // console.log(tmpJson)
-            // console.log(tmpJson['board'])
-            if ( tmpJson['board'][tmpPos[0]][tmpPos[1]] != "") {
-                swal({
-                  icon: "error",
-                  title: "첫 수가 충돌합니다. 다시 두세요.",
-                  button: "다시두기"
-                });
-                return;
-              }
-
-            tmpJson['board'][tmpPos[0]][tmpPos[1]] = "○"
-            
-            localStorage.setItem(snedFromID,JSON.stringify(tmpJson))
-        }
-
-        // [omokFinish]
-        if(data.msg.includes('[omokFinish]') == true){
-            console.log("Finished by Opponents")
-            localStorage.removeItem(snedFromID)
-            EventBus.$emit('omok', "finish")
-        }
-
-        // redraw
-        EventBus.$emit('omok', m)
     }
+    // [omok]
+    if(data.msg.includes('[omok]') == true){
+        var tmpPos = (data.msg.split('[omok]')[1]).split(':')
+
+        var tmpJson = {'board' : board, 'myTurn' : 'True'}
+
+        var tmplocalStorage = localStorage.getItem(snedFromID)
+        if(tmplocalStorage != null){
+            // console.log(JSON.parse(tmplocalStorage))
+            var tmpBoard = JSON.parse(tmplocalStorage)
+            tmpJson['board'] = tmpBoard['board']
+        }
+        if ( tmpJson['board'][tmpPos[0]][tmpPos[1]] != "") { //아직 완벽한 해결책을 찾지 못한 임시 로직
+            swal({
+                icon: "error",
+                title: "첫 수가 충돌합니다. 다시 두세요.",
+                button: "다시두기"
+            });
+            return;
+            }
+
+        tmpJson['board'][tmpPos[0]][tmpPos[1]] = "○"  
+        localStorage.setItem(snedFromID,JSON.stringify(tmpJson))
+    }
+
+    // [omokFinish]
+    if(data.msg.includes('[omokFinish]') == true){
+        console.log("Finished by Opponents")
+        localStorage.removeItem(snedFromID)
+        EventBus.$emit('omok', "finish")
+    }
+
+    // redraw
+    EventBus.$emit('omok', m)
+    
     //添加到friend
     var user = friendsList.list.find((v) => { return v.userId === snedFromID })
     user.infoCount++;

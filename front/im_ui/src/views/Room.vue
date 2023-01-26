@@ -7,7 +7,7 @@
         <van-swipe-cell v-bind:key="userId">
           <van-cell v-bind:title="userName" />
           <template slot="right">
-            <van-button square type="danger" text="添加" @click="click(userId)" />
+            <van-button square type="danger" text="친구추가" @click="click(userId)" />
           </template>
         </van-swipe-cell>
       </template>

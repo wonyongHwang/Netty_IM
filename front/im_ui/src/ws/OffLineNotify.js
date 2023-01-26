@@ -8,7 +8,7 @@ function offLineHandle(obj) {
     user.status='0'
     Notify({
         type: 'success',
-        message: '好友下线:'+data.userName,
+        message: '부재:'+data.userName,
         duration: 1000
     });
 }

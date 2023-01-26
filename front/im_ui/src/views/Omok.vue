@@ -6,7 +6,7 @@
           <van-cell id="friend_cell" v-bind:key="userId" @click="click(userId,userName)" size="large">
             <van-icon id="friend_icon" name="user-o" :info="infoCount>0?infoCount:null" />
             {{userName}}
-            <van-tag :type="status==1?'success':'default'">{{status==1?'online':'offline'}}</van-tag>
+            <van-tag :type="status==1?'success':'default'">{{status==1?'게임가능':'게임불가'}}</van-tag>
           </van-cell>
         </template>
       </van-list>

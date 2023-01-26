@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h3>  VS {{sendToName}} </h3>
-    <button v-on:click="backtolist"> << back </button> <button v-on:click="finishGame">Finish Game</button>
+    <button v-on:click="backtolist"> << 뒤로 </button> <button v-on:click="finishGame">게임종료</button>
     <div class="board">
       <div class="board__row" v-for="_ in 15">
         <div class="board__col"" v-for="_ in 15">
