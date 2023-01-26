@@ -6,7 +6,7 @@
           <van-cell id="friend_cell" v-bind:key="userId" @click="click(userId,userName)" size="large">
             <van-icon id="friend_icon" name="user-o" :info="infoCount>0?infoCount:null" />
             {{userName}}
-            <van-tag :type="status==1?'success':'default'">{{status==1?'在线':'下线'}}</van-tag>
+            <van-tag :type="status==1?'success':'default'">{{status==1?'online':'offline'}}</van-tag>
           </van-cell>
         </template>
       </van-list>
@@ -28,8 +28,7 @@ export default {
   },
   methods: {
     click(userId,userName) {
-      console.log("friends clicked")
-      router.push("/Chat/" + userId+"/"+userName);
+      router.push("/PlayOmok/" + userId+"/"+userName);
     }
   }
 };

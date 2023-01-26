@@ -5,7 +5,9 @@ if (!window.WebSocket) {
     window.WebSocket = window.MozWebSocket;
 }
 if (window.WebSocket) {
-    socket = new WebSocket("ws://"+window.location.host+"/websocket");
+    // socket = new WebSocket("ws://"+window.location.host+"/websocket");
+    socket = new WebSocket("ws://"+"smart.wonyong.net:8088"+"/websocket");
+    //console.log("host : "+window.location.host);
     socket.onmessage = function (event) {
         var packet=JSON.parse( event.data);
         //查找下有没有traceId

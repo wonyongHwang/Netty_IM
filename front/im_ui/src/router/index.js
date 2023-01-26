@@ -27,6 +27,10 @@ const routes = [
       {
         path: 'Room',
         component: () => import(/* webpackChunkName: "about" */ '../views/Room.vue'),
+      },
+      {
+        path: 'Omok',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Omok.vue'),
       }
     ],
     redirect: '/main/Friends' 
@@ -34,6 +38,12 @@ const routes = [
     path: '/Chat/:sendToId/:sendToName',
     name: 'Chat',
     component: () => import(/* webpackChunkName: "about" */ '../views/Chat.vue'),
+    props: true 
+  },
+  {
+    path: '/PlayOmok/:sendToId/:sendToName',
+    name: 'PlayOmok',
+    component: () => import(/* webpackChunkName: "about" */ '../views/PlayOmok.vue'),
     props: true 
   }
 

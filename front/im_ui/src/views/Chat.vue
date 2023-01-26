@@ -54,7 +54,7 @@ export default {
   created: function() {
     console.log('created')
     if (undefined == this.msg[this.sendToId] ||null == this.msg[this.sendToId]) {
-      this.$set(this.msg, this.sendToId, []);
+      this.$set(this.msg, this.sendToId, []); // 없을 경우, 응답 메시지가 채팅창에 업데이트 되지 않음
     }
   },
   beforeDestroy: function() {
