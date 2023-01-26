@@ -355,6 +355,10 @@ export default {
               router.push("/main/Omok");
             }
           });
+     }else if(val == "collision"){
+        localStorage.removeItem(this.sendToId)
+        sendMsg(this.sendToId, "[omokFinish]")
+        router.push("/main/Omok");
      }
 
       var tmpJson = {'board' : this.board, 'myTurn' : 'False'}
@@ -438,7 +442,7 @@ export default {
 
 // 오목판
 .board {
-    width: 100%;
+    width: 400px;
   
     margin: 10px 1px 1px 1px;
     border: 1px solid black;

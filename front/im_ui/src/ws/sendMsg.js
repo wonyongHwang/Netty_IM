@@ -29,7 +29,7 @@ function sendMsg(sendToId, msg) {
         if (data.success != 'SUCCESS') {
             Notify({
                 type: 'danger',
-                message: '发送失败:' + data.reason,
+                message: '발송실패:' + data.reason,
                 duration: 2000,
             });
             m.status = 'F'
@@ -88,10 +88,12 @@ function receiveMsg(obj) {
         if ( tmpJson['board'][tmpPos[0]][tmpPos[1]] != "") { //아직 완벽한 해결책을 찾지 못한 임시 로직
             swal({
                 icon: "error",
-                title: "첫 수가 충돌합니다. 다시 두세요.",
+                title: "첫 수가 충돌합니다. 처음부터 다시 시작하세요",
                 button: "다시두기"
             });
-            return;
+            
+            EventBus.$emit('omok', "collision")
+  
             }
 
         tmpJson['board'][tmpPos[0]][tmpPos[1]] = "○"  
