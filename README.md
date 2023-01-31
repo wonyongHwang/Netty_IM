@@ -76,6 +76,12 @@ port
 3. ssl的支持，
 
 
+## 오목 게임 추가 
+- 1:1 소켓통신 대전게임
+- 3*3 룰 적용안됨
+![avatar](./doc/omokdemo.gif)
+
+
 ## 빌드순서
 1. Front-End Test and Build
 /Netty_IM/front/im_ui 에서
