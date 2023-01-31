@@ -52,7 +52,9 @@ export default {
       new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
     ],
     // - 현재 플레이어
-    player : "●"
+    player : "●",
+    move : [ [0,-1], [1,-1], [1,0], [1,1], [0,1], [-1,1], [-1,0], [-1,-1] ],
+
     };
   },
   methods: {
@@ -171,6 +173,8 @@ export default {
             return
           }
       }
+
+      
 
       this.board[row][col] = tmpJson['board'][row][col] = "●"
       tmpJson['myTurn'] = 'False'
